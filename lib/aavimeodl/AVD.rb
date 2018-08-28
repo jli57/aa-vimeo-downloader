@@ -33,7 +33,7 @@ class LinkParser
 
   def to_hash(unparsed_links)
     @links = Hash.new do |h, k|
-      k =~ /(\[.*\]).*(http.*)/
+      k =~ (/(\[.*\]).*(http[^\)\s]*)/)
       h["#{h.count + 1}: #{$1}"] = $2
     end
 
@@ -104,4 +104,3 @@ end
 if $PROGRAM_NAME == __FILE__
   Aavimeodl::AVD.new
 end
-
